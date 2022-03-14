@@ -149,3 +149,31 @@ WHERE ( ( e.dept_no EQ d.dept_no ) AND
 				            /* Above is a sub-program to find the salary of Mr.Ford */
 QUIT;
 
+/********************************************
+QUESTION 8.6
+Find the details of employees located in Chicago and who have the same job as Allen. 
+List the results in an alphabetical order by employee name.
+ANSWER:
+***********************************************/
+PROC SQL;
+
+TITLE1 'Find the job of Mr. Allen';
+
+SELECT emp_job Label = 'Job of Mr. Allen '
+FROM DMLIBPDK.EMPLOYEE_DS
+WHERE ( emp_name EQ 'ALLEN' ); 
+/* Above is a sub-program to find the job of Mr.Allen   */
+
+TITLE1 'Find the details of employees located in Chicago and who have the same job as Allen.';
+TITLE2 'List the results in an alphabetical order by employee name.';
+
+SELECT *
+FROM DMLIBPDK.EMPLOYEE_DS e, DMLIBPDK.DEPARTMENT_DS d
+WHERE ( ( e.dept_no EQ d.dept_no ) AND 
+	    ( d.dept_loc EQ 'CHICAGO' ) AND
+	    ( e.emp_job EQ ( SELECT emp_job Label = 'Job of Mr. Allen '
+		                 FROM DMLIBPDK.EMPLOYEE_DS
+		                 WHERE ( emp_name EQ 'ALLEN' ) ) ) ); 
+		                 /* Above is a sub-program to find the job of Mr.Allen   */
+
+QUIT;

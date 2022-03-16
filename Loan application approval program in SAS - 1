@@ -1,0 +1,204 @@
+/********************************************
+Name of DS: Mr.Muhammad Fahmi Rosnan (MFR)
+Name of SAS program: mydm_project_mr_muhammadfahmirosnan.sas
+Description:  Loan application approval program in SAS
+Date first written: Wed,16-Mar-2022
+Date last updated: Wed,16-Mar-2022
+Folder name: DM_CT_MAR_2022_PROJECT_AMIE
+Permanent Library name:DMLIBMFR
+***********************************************/
+
+TITLE1 'Structure/Data Dictionary of the dataset - DMLIBMFR.TRAINING_DS';
+PROC CONTENTS DATA = DMLIBMFR.TRAINING_DS;
+RUN;
+
+TITLE1 'Figure 1 Univariate Analysis of the Categorical variable: GENDER';
+FOOTNOTE '----End----';
+
+PROC FREQ DATA = DMLIBMFR.TRAINING_DS;
+TABLE GENDER;
+RUN;
+
+/* This code display a barchart of GENDER*/
+ODS GRAPHICS / RESET WIDTH = 4.0 IN HEIGHT = 3.0 IN IMAGEMAP;
+PROC SGPLOT DATA = DMLIBMFR.TRAINING_DS;
+VBAR GENDER;
+Title 'Figure 2 Univariate Analysis of the Categorical variable: GENDER';
+RUN;
+
+
+TITLE1 'Figure 3 Univariate Analysis of the Categorical variable: LOAN_LOCATION';
+FOOTNOTE '----End----';
+
+PROC FREQ DATA = DMLIBMFR.TRAINING_DS;
+TABLE LOAN_LOCATION;
+RUN;
+
+/* This code display a barchart of LOAN_LOCATION*/
+ODS GRAPHICS / RESET WIDTH = 4.0 IN HEIGHT = 3.0 IN IMAGEMAP;
+PROC SGPLOT DATA = DMLIBMFR.TRAINING_DS;
+VBAR LOAN_LOCATION;
+Title 'Figure 4 Univariate Analysis of the Categorical variable: LOAN_LOCATION';
+RUN;
+
+
+TITLE1 'Figure 5 Univariate Analysis of the Categorical variable: MARITAL_STATUS';
+FOOTNOTE '----End----';
+
+PROC FREQ DATA = DMLIBMFR.TRAINING_DS;
+TABLE MARITAL_STATUS;
+RUN;
+
+/* This code display a barchart of MARITAL_STATUS*/
+ODS GRAPHICS / RESET WIDTH = 4.0 IN HEIGHT = 3.0 IN IMAGEMAP;
+PROC SGPLOT DATA = DMLIBMFR.TRAINING_DS;
+VBAR MARITAL_STATUS;
+Title 'Figure 6 Univariate Analysis of the Categorical variable: MARITAL_STATUS';
+RUN;
+
+
+TITLE1 'Figure 7 Univariate Analysis of the Categorical variable: QUALIFICATION';
+FOOTNOTE '----End----';
+
+PROC FREQ DATA = DMLIBMFR.TRAINING_DS;
+TABLE QUALIFICATION;
+RUN;
+
+/* This code display a barchart of QUALIFICATION*/
+ODS GRAPHICS / RESET WIDTH = 4.0 IN HEIGHT = 3.0 IN IMAGEMAP;
+PROC SGPLOT DATA = DMLIBMFR.TRAINING_DS;
+VBAR QUALIFICATION;
+Title 'Figure 8 Univariate Analysis of the Categorical variable: QUALIFICATION';
+RUN;
+
+
+TITLE1 'Figure 9 Univariate Analysis of the Categorical variable: LOAN_HISTORY';
+FOOTNOTE '----End----';
+
+PROC FREQ DATA = DMLIBMFR.TRAINING_DS;
+TABLE LOAN_HISTORY;
+RUN;
+
+/* This code display a barchart of LOAN_HISTORY*/
+ODS GRAPHICS / RESET WIDTH = 4.0 IN HEIGHT = 3.0 IN IMAGEMAP;
+PROC SGPLOT DATA = DMLIBMFR.TRAINING_DS;
+VBAR LOAN_HISTORY;
+Title 'Figure 10 Univariate Analysis of the Categorical variable: LOAN_HISTORY';
+RUN;
+
+
+TITLE1 'Figure 11 Univariate Analysis of the Categorical variable: LOAN_APPROVAL_STATUS';
+FOOTNOTE '----End----';
+
+PROC FREQ DATA = DMLIBMFR.TRAINING_DS;
+TABLE LOAN_APPROVAL_STATUS;
+RUN;
+
+/* This code display a barchart of LOAN_APPROVAL_STATUS*/
+ODS GRAPHICS / RESET WIDTH = 4.0 IN HEIGHT = 3.0 IN IMAGEMAP;
+PROC SGPLOT DATA = DMLIBMFR.TRAINING_DS;
+VBAR LOAN_APPROVAL_STATUS;
+Title 'Figure 12 Univariate Analysis of the Categorical variable: LOAN_APPROVAL_STATUS';
+RUN;
+
+
+TITLE1 'Figure 13 Univariate Analysis of the Categorical variable: CANDIDATE_INCOME';
+PROC MEANS DATA = DMLIBMFR.TRAINING_DS N NMISS MIN MAX MEAN MEDIAN STD;
+VAR CANDIDATE_INCOME;
+RUN;
+
+ODS GRAPHICS / RESET WIDTH = 4.0 IN HEIGHT = 3.0 IN IMAGEMAP;
+PROC SGPLOT DATA = DMLIBMFR.TRAINING_DS;
+HISTOGRAM CANDIDATE_INCOME;
+Title 'Figure 14 Univariate Analysis of the Categorical variable: CANDIDATE_INCOME';
+RUN;
+
+
+TITLE1 'Figure 15 Univariate Analysis of the Categorical variable: LOAN_AMOUNT';
+PROC MEANS DATA = DMLIBMFR.TRAINING_DS N NMISS MIN MAX MEAN MEDIAN STD;
+VAR LOAN_AMOUNT;
+RUN;
+
+ODS GRAPHICS / RESET WIDTH = 4.0 IN HEIGHT = 3.0 IN IMAGEMAP;
+PROC SGPLOT DATA = DMLIBMFR.TRAINING_DS;
+HISTOGRAM LOAN_AMOUNT;
+Title 'Figure 16 Univariate Analysis of the Categorical variable: LOAN_AMOUNT';
+RUN;
+
+
+TITLE1 'Figure 17 Univariate Analysis of the Categorical variable: LOAN_DURATION';
+PROC MEANS DATA = DMLIBMFR.TRAINING_DS N NMISS MIN MAX MEAN MEDIAN STD;
+VAR LOAN_DURATION;
+RUN;
+
+ODS GRAPHICS / RESET WIDTH = 4.0 IN HEIGHT = 3.0 IN IMAGEMAP;
+PROC SGPLOT DATA = DMLIBMFR.TRAINING_DS;
+HISTOGRAM LOAN_DURATION;
+Title 'Figure 18 Univariate Analysis of the Categorical variable: LOAN_DURATION';
+RUN;
+
+
+TITLE1 'Figure 19 Bivariate Analysis of the variables:)';
+TITLE2 ' ( LOAN_location - Categorical variable vs LOAN_APPROVAL_STATUS - Categorical variable ) ';
+FOOTNOTE '----End----';
+
+PROC FREQ DATA = DMLIBMFR.TRAINING_DS;
+
+TABLE  LOAN_LOCATION * LOAN_APPROVAL_STATUS /
+PLOTS = FREQPLOT( TWOWAY = STACKED SCALE = GROUPPCT );
+RUN;
+
+
+TITLE1 'Figure 20 Bivariate Analysis of the variables:)';
+TITLE2 ' ( GENDER - Categorical variable vs LOAN_APPROVAL_STATUS - Categorical variable ) ';
+FOOTNOTE '----End----';
+
+PROC FREQ DATA = DMLIBMFR.TRAINING_DS;
+
+TABLE  GENDER * LOAN_APPROVAL_STATUS /
+PLOTS = FREQPLOT( TWOWAY = STACKED SCALE = GROUPPCT );
+RUN;
+
+
+TITLE1 'Figure 21 Bivariate Analysis of the variables:)';
+TITLE2 ' ( QUALIFICATION - Categorical variable vs LOAN_APPROVAL_STATUS  - Categorical variable ) ';
+FOOTNOTE '----End----';
+
+PROC FREQ DATA = DMLIBMFR.TRAINING_DS;
+
+TABLE  QUALIFICATION * LOAN_APPROVAL_STATUS /
+PLOTS = FREQPLOT( TWOWAY = STACKED SCALE = GROUPPCT );
+RUN;
+
+
+/* P : PARAMETER
+   DS: DATASET
+   VARI: VARIABLE
+   UVA: UNIVARIATE
+*/
+
+/* MACRO BEGINS HERE */
+
+%MACRO MACRO_UVA(PDS_NAME, PVARI_NAME, PTITLE_1, PTITLE_2, PFOOTNOTE);
+
+TITLE1 &PTITLE_1; /* PASSING VALUE */
+TITLE2 &PTITLE_2;
+FOOTNOTE &PFOOTNOTE;
+
+PROC FREQ DATA = &PDS_NAME;
+
+TABLE &PVARI_NAME;
+
+QUIT;
+
+%MEND MACRO_UVA;
+
+/* MACRO ENDS HERE */
+
+/* CALL/RUN THE SAS MACRO */
+
+%MACRO_UVA(DMLIBMFR.TRAINING_DS, LOAN_LOCATION, 'UNIVARIATE ANALYSIS', 'OF THE CATEGORICAL VARIABLE - LOAN_LOCATION', '----End----');
+%MACRO_UVA(DMLIBMFR.TRAINING_DS, GENDER, 'UNIVARIATE ANALYSIS', 'OF THE CATEGORICAL VARIABLE - GENDER', '----End----');
+%MACRO_UVA(DMLIBMFR.TRAINING_DS, MARITAL_STATUS, 'UNIVARIATE ANALYSIS', 'OF THE CATEGORICAL VARIABLE - MARITAL_STATUS', '----End----');
+%MACRO_UVA(DMLIBMFR.TRAINING_DS, QUALIFICATION, 'UNIVARIATE ANALYSIS', 'OF THE CATEGORICAL VARIABLE - QUALIFICATION', '----End----');
+
